@@ -1,0 +1,69 @@
+PATH
+  remote: .
+  specs:
+    textbundle_to (1.0.0)
+      faraday
+      mimemagic
+      radiator
+      trundle
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activesupport (4.2.10)
+      i18n (~> 0.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.3, >= 0.3.4)
+      tzinfo (~> 1.1)
+    awesome_print (1.8.0)
+    bitcoin-ruby (0.0.18)
+    coderay (1.1.2)
+    concurrent-ruby (1.0.5)
+    connection_pool (2.2.2)
+    faraday (0.15.2)
+      multipart-post (>= 1.2, < 3)
+    ffi (1.9.25)
+    hashie (3.5.7)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
+    json (2.1.0)
+    little-plugger (1.1.4)
+    logging (2.2.2)
+      little-plugger (~> 1.1)
+      multi_json (~> 1.10)
+    method_source (0.9.0)
+    mimemagic (0.3.2)
+    minitest (5.11.3)
+    multi_json (1.13.1)
+    multipart-post (2.0.0)
+    net-http-persistent (3.0.0)
+      connection_pool (~> 2.2)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    radiator (0.4.2)
+      awesome_print (~> 1.7, >= 1.7.0)
+      bitcoin-ruby (~> 0.0, >= 0.0.11)
+      ffi (~> 1.9, >= 1.9.18)
+      hashie (~> 3.5, >= 3.5.5)
+      json (~> 2.0, >= 2.0.2)
+      logging (~> 2.2, >= 2.2.0)
+      net-http-persistent (>= 2.5.2)
+    rake (10.5.0)
+    thread_safe (0.3.6)
+    trundle (0.2.0)
+      activesupport (~> 4.2)
+    tzinfo (1.2.5)
+      thread_safe (~> 0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.16)
+  pry
+  rake (~> 10.0)
+  textbundle_to!
+
+BUNDLED WITH
+   1.16.1

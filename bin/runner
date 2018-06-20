@@ -1,0 +1,10 @@
+#!/bin/sh
+
+case $1 in
+  steemit)
+    bundle exec rake steemit:publish"[post.textbundle,$STEEMIT_WIF,$STEEMIT_USER_NAME,$STEEMIT_TAGS]"
+    ;;
+  other)
+    echo "Not supported yet"
+    ;;
+esac

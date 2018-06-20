@@ -1,0 +1,3 @@
+#!/bin/sh
+
+docker push seapy/textbundle_to:$1

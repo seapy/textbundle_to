@@ -4,6 +4,11 @@ textbundle format to publishing platforms(steemit)
 
 [Korean] textbundle 포맷의 파일을 글 쓰기 플랫폼(스팀잇)으로 전송
 
+Use below link when install Bear, that is affiliate link.
+
+* [Bear macOS](https://geo.itunes.apple.com/us/app/bear/id1091189122?mt=12&at=1010lcjq&ct=githubtextbundleto)
+* [Bear iOS](https://itunes.apple.com/us/app/bear/id1016366447?mt=8&at=1010lcjq&ct=githubtextbundleto)
+
 ## Usage
 
 ### Docker

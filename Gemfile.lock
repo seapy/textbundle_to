@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    textbundle_to (1.0.0)
+    textbundle_to (1.1.0)
       activesupport
       faraday
       mimemagic

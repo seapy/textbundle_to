@@ -19,7 +19,7 @@ $ docker run -it --rm \
     -e STEEMIT_WIF="your steemit wif" \
     -e STEEMIT_USER_NAME="your steemit user name" \
     -e STEEMIT_TAGS="tag1,tag2" \
-    seapy/textbundle_to:1.0.0 steemit
+    seapy/textbundle_to:1.1.0 steemit
 ```
 
 ### Rake
@@ -50,8 +50,8 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ### Docker release
 
 ```
-$ bin/docker_build 1.0.0
-$ bin/docker_release 1.0.0
+$ bin/docker_build 1.1.0
+$ bin/docker_release 1.1.0
 ```
 
 ## TODO

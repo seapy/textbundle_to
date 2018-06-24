@@ -1,5 +1,6 @@
 require "textbundle_to/version"
 require "textbundle_to/configuration"
+require "textbundle_to/textbundle_extend"
 require "textbundle_to/steemit/publish"
 require "textbundle_to/steemit/image_upload"
 

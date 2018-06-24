@@ -36,7 +36,7 @@ config = TextbundleTo::Configuration.new do |config|
   config.steemit_user_name = 'your steemit user name'
 end
 steemit = TextbundleTo::Steemit::Publish.new(config: config)
-result = steemit.publish(textbundle: 'your_text_bundle.textbundle', tags: ['tag1','tag2'])
+result = steemit.publish(textbundle_path: 'your_text_bundle.textbundle', tags: ['tag1','tag2'])
 puts result[:success]
 puts result[:message]
 ```

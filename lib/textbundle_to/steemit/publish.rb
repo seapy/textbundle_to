@@ -1,6 +1,4 @@
-require 'trundle'
 require 'radiator'
-require 'digest'
 
 module TextbundleTo
   module Steemit
@@ -11,54 +9,45 @@ module TextbundleTo
         @config = config
       end
 
-      def publish(textbundle:, tags:)
-        Trundle.configure do |config|
-          config.namespaces do
-            textbundle_to 'com.textbundleto'
-          end
-        end
-        bundle = Trundle.open(textbundle)
-        bundle = upload_image(bundle: bundle)
-        post_steemit(bundle: bundle, tags: tags)
+      def publish(textbundle_path:, tags: nil)
+        bundle = TextbundleExtend.new(textbundle_path: textbundle_path)
+        tags&.reject!(&:empty?)
+        bundle.tags = tags if (tags&.count || 0) > 0
+        post_steemit(bundle: bundle)
       end
 
       private
 
       def upload_image(bundle:)
         uploader = ImageUpload.new(config: @config)
-        assets = []
-        bundle.assets.send(:assets).each do |asset|
-          url = uploader.upload(image_path: asset.last.to_s)
-          bundle.text.gsub!("(assets/#{asset.first})", "(#{url})")
-          assets << url
+        bundle.assets.each do |asset|
+          asset.url = uploader.upload(image_path: asset.pathname.to_s)
         end
-        bundle.textbundle_to.images = assets unless assets.empty?
-        bundle
+        bundle.replace_assets_url
       end
 
-      def post_steemit(bundle:, tags:)
+      def post_steemit(bundle:)
+        upload_image(bundle: bundle)
+        
         options = {
           wif: @config.steemit_wif_private_key
         }
         tx = ::Radiator::Transaction.new(options)
         metadata = {
-          tags: tags,
+          tags: bundle.tags,
           app: "textbundle_to/#{TextbundleTo::VERSION}",
           format: 'markdown'
         }
-        metadata[:image] = bundle.textbundle_to.images unless bundle.textbundle_to.images.nil?
-        lines = bundle.text.split("\n")
-        title = lines.first[2..-1]
-        body = lines[1..-1].join("\n")
+        metadata[:image] = bundle.assets.map { |e| e.url } if (bundle.assets&.count || 0) > 0
         # https://developers.steem.io/apidefinitions/#apidefinitions-condenser-api
         tx.operations << {
           type: :comment,
           parent_author: '',
-          parent_permlink: tags.first, # required
+          parent_permlink: bundle.tags.first, # required
           author: @config.steemit_user_name,
-          permlink: Digest::SHA256.hexdigest(Time.now.to_i.to_s)[0..6], # required
-          title: title,
-          body: body,
+          permlink: bundle.permlink, # required
+          title: bundle.title,
+          body: bundle.body,
           json_metadata: metadata.to_json
         }
         response = tx.process(true)
